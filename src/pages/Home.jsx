@@ -1,9 +1,7 @@
 import React from 'react';
 import qs from 'qs';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import {
   setCategoryId,
   setCurentPage,
@@ -182,6 +180,7 @@ const Home = () => {
     //   return false;
     // })
     .map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+
   const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
 
   return (
