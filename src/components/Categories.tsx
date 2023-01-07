@@ -1,7 +1,12 @@
 import React from 'react';
 
-function Categories({ value, onChangeCategory }) {
-  const categories = [
+type CategoriesProps = {
+  value: number;
+  onChangeCategory: any;
+};
+
+const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
+  const categories: string[] = [
     'Всі',
     "М'ясні",
     'Вегетарианські',
@@ -27,5 +32,5 @@ function Categories({ value, onChangeCategory }) {
       </ul>
     </div>
   );
-}
+};
 export default Categories;

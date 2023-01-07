@@ -16,7 +16,7 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 // import { SearchContext } from '../App';
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isSearch = React.useRef(false);
@@ -38,11 +38,11 @@ const Home = () => {
   //   name: 'популярність',
   //   sortProperty: 'rating',
   // });
-  const onChangeCategory = (id) => {
-    dispatch(setCategoryId(id));
+  const onChangeCategory = (index: number) => {
+    dispatch(setCategoryId(index));
   };
 
-  const onChangePage = (page) => {
+  const onChangePage = (page: number) => {
     dispatch(setCurentPage(page));
   };
 
@@ -82,6 +82,7 @@ const Home = () => {
     //   `https://639c590f16d1763ab14707cf.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
     // );
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         sortBy,
         order,
@@ -179,7 +180,7 @@ const Home = () => {
 
     //   return false;
     // })
-    .map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+    .map((obj: any) => <PizzaBlock key={obj.id} {...obj} />);
 
   const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
 
