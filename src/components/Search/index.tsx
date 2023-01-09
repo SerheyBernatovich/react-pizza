@@ -11,7 +11,8 @@ const Search: React.FC = () => {
   // const { setSearchValue } = React.useContext(SearchContext);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const onClickClear = () => {
+  const onClickClear = (e: React.MouseEvent<SVGSVGElement>) => {
+    console.log(e);
     dispatch(setSearchValue(''));
     setValue('');
     // if (inputRef.current) {
@@ -27,7 +28,7 @@ const Search: React.FC = () => {
     []
   );
 
-  const onChangeInput = (e: any) => {
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     updateSearchValue(e.target.value);
   };

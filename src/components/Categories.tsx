@@ -2,18 +2,19 @@ import React from 'react';
 
 type CategoriesProps = {
   value: number;
-  onChangeCategory: any;
+  onChangeCategory: (i: number) => void;
 };
 
+const categories: string[] = [
+  'Всі',
+  "М'ясні",
+  'Вегетарианські',
+  'Гриль',
+  'Гострі',
+  'Закриті',
+];
+
 const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
-  const categories: string[] = [
-    'Всі',
-    "М'ясні",
-    'Вегетарианські',
-    'Гриль',
-    'Гострі',
-    'Закриті',
-  ];
   // const onClickCategory = (i) => {
   //   setActiveIndex(i);
   // };
