@@ -16,7 +16,7 @@ const Cart: React.FC = () => {
 
   const onClickClear = () => {
     if (window.confirm('Are you sure you want to clear cart?')) {
-      dispatch(clearItem({}));
+      dispatch(clearItem());
     }
   };
 

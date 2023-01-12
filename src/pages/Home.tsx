@@ -3,22 +3,28 @@ import qs from 'qs';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import {
+  FilterSliceState,
   selectFilter,
   setCategoryId,
   setCurentPage,
   setFilters,
 } from '../redux/slices/filterSlice';
-import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzasSlice';
+import {
+  fetchPizzas,
+  selectPizzaData,
+  SearchPizzaParams,
+} from '../redux/slices/pizzasSlice';
 import Categories from '../components/Categories';
 import Sort, { sortList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
+import { useAppDispatch } from '../redux/stor';
 // import { SearchContext } from '../App';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
   // const categoryId = useSelector((state) => state.filter.categoryId);
@@ -82,13 +88,12 @@ const Home: React.FC = () => {
     //   `https://639c590f16d1763ab14707cf.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
     // );
     dispatch(
-      // @ts-ignore
       fetchPizzas({
         sortBy,
         order,
         category,
         search,
-        currentPage,
+        currentPage: String(currentPage),
       })
     );
     // } catch (error) {
@@ -112,6 +117,9 @@ const Home: React.FC = () => {
 
       navigate(`?${queryString}`);
     }
+    if (!window.location.search) {
+      dispatch(fetchPizzas({} as SearchPizzaParams));
+    }
     isMounted.current = true;
     // console.log(queryString);
   }, [categoryId, sort.sortProperty, currentPage]);
@@ -119,16 +127,21 @@ const Home: React.FC = () => {
   // якщо був перший рендер то перевіряємо URL-параметри і зберігаємо в редаксі
   React.useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+      const params = qs.parse(
+        window.location.search.substring(1)
+      ) as unknown as SearchPizzaParams;
       // console.log(params);
-      const sort = sortList.find(
-        (obj) => obj.sortProperty === params.sortProperty
-      );
+      const sort = sortList.find((obj) => obj.sortProperty === params.sortBy);
+      // if (sort) {
+      //   params.sortBy = sort;
+      // }
 
       dispatch(
         setFilters({
-          ...params,
-          sort,
+          searchValue: params.search,
+          categoryId: Number(params.category),
+          currentPage: Number(params.currentPage),
+          sort: sort || sortList[0],
         })
       );
       isSearch.current = true;
