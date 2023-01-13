@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectSort,
   setSort,
+  Sort,
   SortPropertyEnum,
 } from '../redux/slices/filterSlice';
 
@@ -14,6 +15,11 @@ type SortItem = {
 type PopupClick = MouseEvent & {
   path: Node[];
 };
+
+type SortPopupProps = {
+  value: Sort;
+};
+
 export const sortList: SortItem[] = [
   { name: 'популярність(DESC)', sortProperty: SortPropertyEnum.RATING_DESC },
   { name: 'популярність(ASC)', sortProperty: SortPropertyEnum.RATING_ASC },
@@ -23,9 +29,9 @@ export const sortList: SortItem[] = [
   { name: 'алфавіт(ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
-function SortPopup() {
+const SortPopup: React.FC<SortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
-  const sort = useSelector(selectSort);
+  // const sort = useSelector(selectSort);
   const sortRef = React.useRef<HTMLDivElement>(null);
   // console.log(sortRef);
 
@@ -65,7 +71,7 @@ function SortPopup() {
           />
         </svg>
         <b>Сортування по:</b>
-        <span onClick={() => setOpen(!open)}>{sort.name}</span>
+        <span onClick={() => setOpen(!open)}>{value.name}</span>
       </div>
       {open && (
         <div className="sort__popup">
@@ -74,7 +80,7 @@ function SortPopup() {
               <li
                 onClick={() => onClickListItem(obj)}
                 className={
-                  sort.sortProperty === obj.sortProperty ? 'active' : ''
+                  value.sortProperty === obj.sortProperty ? 'active' : ''
                 }
                 key={obj.name}
               >
@@ -86,5 +92,5 @@ function SortPopup() {
       )}
     </div>
   );
-}
+});
 export default SortPopup;

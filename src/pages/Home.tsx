@@ -44,9 +44,9 @@ const Home: React.FC = () => {
   //   name: 'популярність',
   //   sortProperty: 'rating',
   // });
-  const onChangeCategory = (index: number) => {
+  const onChangeCategory = React.useCallback((index: number) => {
     dispatch(setCategoryId(index));
-  };
+  }, []);
 
   const onChangePage = (page: number) => {
     dispatch(setCurentPage(page));
@@ -202,7 +202,8 @@ const Home: React.FC = () => {
       <div className="content__top">
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort
-        // value={sortType} onChangeSort={(i) => setSortType(i)}
+          value={sort}
+          // value={sortType} onChangeSort={(i) => setSortType(i)}
         />
       </div>
       <h2 className="content__title">Всі піцци</h2>
