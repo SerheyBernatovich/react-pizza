@@ -1,4 +1,4 @@
-import { RootState } from '../../stor';
+import { RootState } from '../stor';
 
 export const selectCart = (state: RootState) => state.cart;
 
