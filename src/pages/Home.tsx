@@ -1,19 +1,7 @@
 import React from 'react';
 import qs from 'qs';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-// import {
-//   FilterSliceState,
-//   selectFilter,
-//   setCategoryId,
-//   setCurentPage,
-//   setFilters,
-// } from '../redux/slices/filterSlice';
-// import {
-//   fetchPizzas,
-//   selectPizzaData,
-//   SearchPizzaParams,
-// } from '../redux/slices/pizzasSlice';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Categories from '../components/Categories';
 import Sort, { sortList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
@@ -27,16 +15,18 @@ import {
   setFilters,
 } from '../redux/filter/slise';
 import { selectPizzaData } from '../redux/pizza/selectors';
-// import { fetchPizzas } from '../redux/slices/pizza/slice';
 import { SearchPizzaParams } from '../redux/pizza/types';
 import { fetchPizzas } from '../redux/pizza/asyncActions';
-// import { SearchContext } from '../App';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
+
+  // import('../utils/math').then((math) => {
+  //   console.log(math.add(16, 26));
+  // });
   // const categoryId = useSelector((state) => state.filter.categoryId);
   // const sortType = useSelector((state) => state.filter.sort.sortProperty);
   const { categoryId, sort, currentPage, searchValue } =
