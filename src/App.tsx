@@ -1,3 +1,4 @@
+import Loadable from 'react-loadable';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './scss/app.scss';
@@ -8,9 +9,18 @@ import Home from './pages/Home';
 // import FullPizza from './pages/FullPizza';
 import MainLayout from './layouts/MainLayout';
 
-const Cart = React.lazy(() => import('./pages/Cart'));
-const FullPizza = React.lazy(() => import('./pages/FullPizza'));
-const NotFound = React.lazy(() => import('./pages/NotFound'));
+// код сплітінг на стороні сервера і клієнта
+const Cart = Loadable({
+  loader: () => import(/*webpackChunkName:'Cart' */ './pages/Cart'),
+  loading: () => <div>Loading the cart...</div>,
+});
+// код сплітінг на стороні клієнта
+const FullPizza = React.lazy(
+  () => import(/*webpackChunkName:'FullPizza' */ './pages/FullPizza')
+);
+const NotFound = React.lazy(
+  () => import(/*webpackChunkName:'NotFound' */ './pages/NotFound')
+);
 
 function App() {
   return (
