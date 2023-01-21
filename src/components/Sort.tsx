@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setSort } from '../redux/filter/slise';
 import { Sort, SortPropertyEnum } from '../redux/filter/types';
-// import { setSort, Sort, SortPropertyEnum } from '../redux/slices/filterSlice';
 
 type SortItem = {
   name: string;
@@ -28,9 +27,8 @@ export const sortList: SortItem[] = [
 
 const SortPopup: React.FC<SortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
-  // const sort = useSelector(selectSort);
+
   const sortRef = React.useRef<HTMLDivElement>(null);
-  // console.log(sortRef);
 
   const [open, setOpen] = React.useState(false);
 

@@ -18,7 +18,6 @@ const Pagination: React.FC<PaginationProps> = ({
     pageRangeDisplayed={4}
     pageCount={3}
     previousLabel="<"
-    // renderOnZeroPageCount={null}
     forcePage={currentPage - 1}
   />
 );

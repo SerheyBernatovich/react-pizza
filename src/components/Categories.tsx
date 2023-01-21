@@ -17,9 +17,6 @@ const categories: string[] = [
 
 const Categories: React.FC<CategoriesProps> = React.memo(
   ({ value, onChangeCategory }) => {
-    // const onClickCategory = (i) => {
-    //   setActiveIndex(i);
-    // };
     // useWhyDidYouUpdate('Categories', { value, onChangeCategory });
     return (
       <div className="categories">

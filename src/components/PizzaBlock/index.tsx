@@ -30,8 +30,6 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 
   const cartItem = useSelector(selectCartItemById(id));
 
-  // const cartItem = useSelector((state) => selectCartItemById(id, state));
-
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
 
