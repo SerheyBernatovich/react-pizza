@@ -4,9 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 import './scss/app.scss';
 
 import Home from './pages/Home';
-// import Cart from './pages/Cart';
-// import NotFound from './pages/NotFound';
-// import FullPizza from './pages/FullPizza';
 import MainLayout from './layouts/MainLayout';
 
 // код сплітінг на стороні сервера і клієнта

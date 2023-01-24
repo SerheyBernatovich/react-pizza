@@ -1,19 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { fetchPizzas } from './asyncActions';
-import { Pizza, PizzasSliceState, SearchPizzaParams, Status } from './types';
-
-// export const fetchPizzas = createAsyncThunk<Pizza[], SearchPizzaParams>(
-//   'pizza/fetchPizzasStatus',
-//   async (params) => {
-//     const { sortBy, order, category, search, currentPage } = params;
-//     const { data } = await axios.get<Pizza[]>(
-//       `https://639c590f16d1763ab14707cf.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-//     );
-
-//     return data;
-//   }
-// );
+import { Pizza, PizzasSliceState, Status } from './types';
 
 const initialState: PizzasSliceState = {
   items: [],
